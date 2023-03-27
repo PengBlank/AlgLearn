@@ -1,3 +1,5 @@
+package com.blank.peng.learn.datastructure;
+
 public class Array {
     private int[] data;
     private int size;
@@ -64,12 +66,9 @@ public class Array {
      * @param element 元素
      */
     public void add(int index, int element) {
+        //没有空间则扩容
         if (size == data.length) {
-            throw new IllegalArgumentException("no apace to add ele");
-        }
-
-        if (index < 0 || index > size) {
-            throw new IllegalArgumentException("no apace to add ele");
+            resizeArray(size * 2);
         }
 
         for (int i = size - 1; i >= index; i--) {
@@ -78,6 +77,14 @@ public class Array {
         }
         data[index] = element;
         size++;
+    }
+
+    private void resizeArray(int newCapacity) {
+        int[] newData = new int[newCapacity];
+        for (int i = 0; i < data.length; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
     /**
@@ -120,8 +127,8 @@ public class Array {
      * @param index 待删除位置
      */
     public int remove(int index) {
-        if (index < 0 || index > size) {
-            throw new IllegalArgumentException("no apace to add ele");
+        if (size == data.length / 2) {
+            resizeArray(size / 2);
         }
         int ret = data[index];
         for (int i = index; i < size - 1; i++) {
@@ -135,7 +142,8 @@ public class Array {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("{Array: Capacity -> %d, Size -> %d, \n  Elements:[", data.length, size));
+        builder.append(String.format("{Array: Capacity -> %d, Size -> %d", data.length, size));
+        builder.append("\nElements:[");
         for (int i = 0; i < size; i++) {
             builder.append(data[i]);
             if (i != size - 1) {
