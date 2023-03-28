@@ -9,8 +9,7 @@ public class Question1 {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        Integer[] nums = Arrays.stream(scan.nextLine().split(" ")).map(Integer::parseInt)
-                .toArray(Integer[]::new);
+        Integer[] nums = Arrays.stream(scan.nextLine().split(" ")).map(Integer::parseInt).toArray(Integer[]::new);
         m = scan.nextInt();
         Arrays.sort(nums);
         min_num = nums[0];

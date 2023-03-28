@@ -61,7 +61,7 @@ public class Question2 {
             int task = currentTask[0];
             int time = currentTask[1];
 
-            //遍历入度为0元素的，出度元素
+            //遍历入度为0元素的出度元素
             for (int down_task : down.get(task)) {
                 if (--up[down_task] == 0) {
                     result = time + 1;
