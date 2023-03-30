@@ -30,17 +30,18 @@ public class Question5 {
         while (right < content.length()) {
             if (right >= word.length()) {
                 int left = right - word.length();
-                if (wordMap.containsKey(contentArr[left]) && wordMap.get(contentArr[left]) <= contentMap.get(contentArr[left]))
+                if (wordMap.containsKey(contentArr[left]) && wordMap.get(contentArr[left]) == contentMap.get(contentArr[left]))
                     contentChildCharKind -= 1;
                 contentMap.put(contentArr[left], contentMap.getOrDefault(contentArr[left], 0) + 1);
             }
             contentMap.put(contentArr[right], contentMap.getOrDefault(contentArr[right], 0) + 1);
-            if (wordMap.containsKey(contentArr[right]) && wordMap.get(contentArr[right]) <= contentMap.get(contentArr[right])) {
+            if (wordMap.containsKey(contentArr[right]) && wordMap.get(contentArr[right]) == contentMap.get(contentArr[right])) {
                 contentChildCharKind += 1;
             }
             right += 1;
-            if (contentChildCharKind == wordCharKind)
+            if (contentChildCharKind == wordCharKind) {
                 result += 1;
+            }
 
         }
         return result;
